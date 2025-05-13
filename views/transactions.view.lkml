@@ -12,8 +12,8 @@ view: transactions {
     # hidden: yes
     sql: ${TABLE}.customer_id ;;
   }
-  dimension: price {
-    type: number
+  measure: price {
+    type: sum
     sql: ${TABLE}.price ;;
   }
   dimension: product_id {
@@ -21,8 +21,8 @@ view: transactions {
     # hidden: yes
     sql: ${TABLE}.product_id ;;
   }
-  dimension: quantity {
-    type: number
+  measure: quantity {
+    type: sum
     sql: ${TABLE}.quantity ;;
   }
   dimension: store_id {
@@ -43,14 +43,14 @@ view: transactions {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	transaction_id,
-	stores.store_id,
-	products.product_id,
-	products.name,
-	customers.last_name,
-	customers.customer_id,
-	customers.first_name
-	]
+  transaction_id,
+  stores.store_id,
+  products.product_id,
+  products.name,
+  customers.last_name,
+  customers.customer_id,
+  customers.first_name
+  ]
   }
 
 }
