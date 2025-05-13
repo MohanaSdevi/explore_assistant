@@ -2,7 +2,7 @@ connection: "analytics"
 include: "/views/*.view.lkml"
 
 explore: customers {
-  label: "Marketing Analytics"
+  label: "Explore Assistant_Marketing Data"
 
   sql_always_where: ${products.category} IS NOT NULL
                     AND ${campaigns.type} IS NOT NULL
