@@ -6,8 +6,8 @@ view: social_media_engagement {
     # hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
-  dimension: comments {
-    type: number
+  measure: comments {
+    type: sum
     sql: ${TABLE}.comments ;;
   }
   dimension_group: engagement {
@@ -19,16 +19,16 @@ view: social_media_engagement {
     type: number
     sql: ${TABLE}.engagement_id ;;
   }
-  dimension: likes {
-    type: number
+  measure: likes {
+    type: sum
     sql: ${TABLE}.likes ;;
   }
   dimension: post_id {
     type: string
     sql: ${TABLE}.post_id ;;
   }
-  dimension: shares {
-    type: number
+  measure: shares {
+    type: sum
     sql: ${TABLE}.shares ;;
   }
   measure: count {

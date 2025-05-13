@@ -15,6 +15,7 @@ view: transactions {
   measure: price {
     type: sum
     sql: ${TABLE}.price ;;
+    value_format: "#,##0"
   }
   dimension: product_id {
     type: number
@@ -24,6 +25,7 @@ view: transactions {
   measure: quantity {
     type: sum
     sql: ${TABLE}.quantity ;;
+    value_format: "#,##0"
   }
   dimension: store_id {
     type: number

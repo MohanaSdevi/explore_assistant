@@ -19,8 +19,9 @@ view: products {
     type: string
     sql: ${TABLE}.platform ;;
   }
-  dimension: price {
-    type: number
+  measure: price {
+    type: sum
+    value_format: "#,##0"
     sql: ${TABLE}.price ;;
   }
   measure: count {
