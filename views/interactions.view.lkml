@@ -1,5 +1,5 @@
 view: interactions {
-  sql_table_name: `sqsh-looker-project.marketing_analytics.interactions` ;;
+  sql_table_name: sqsh-developer-pocs.marketing_analytics.interactions ;;
   drill_fields: [interaction_id]
 
   dimension: interaction_id {
@@ -38,17 +38,20 @@ view: interactions {
     type: count
     drill_fields: [detail*]
   }
-
+  measure: avg_campaign_ratings {
+    type: average
+    sql: ${campaign_ratings};;
+  }
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	interaction_id,
-	customers.last_name,
-	customers.customer_id,
-	customers.first_name,
-	campaigns.name,
-	campaigns.campaign_id
-	]
+      interaction_id,
+      customers.last_name,
+      customers.customer_id,
+      customers.first_name,
+      campaigns.name,
+      campaigns.campaign_id
+    ]
   }
 
 }

@@ -1,12 +1,12 @@
 view: social_media_engagement {
-  sql_table_name: `sqsh-looker-project.marketing_analytics.social_media_engagement` ;;
+  sql_table_name: sqsh-developer-pocs.marketing_analytics.social_media_engagement_1 ;;
 
   dimension: campaign_id {
+    primary_key: yes
     type: number
-    # hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
-  measure: comments {
+  measure: total_comments {
     type: sum
     sql: ${TABLE}.comments ;;
   }
@@ -19,7 +19,7 @@ view: social_media_engagement {
     type: number
     sql: ${TABLE}.engagement_id ;;
   }
-  measure: likes {
+  measure: total_likes {
     type: sum
     sql: ${TABLE}.likes ;;
   }
@@ -27,7 +27,7 @@ view: social_media_engagement {
     type: string
     sql: ${TABLE}.post_id ;;
   }
-  measure: shares {
+  measure: total_shares {
     type: sum
     sql: ${TABLE}.shares ;;
   }

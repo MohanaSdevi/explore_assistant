@@ -1,5 +1,5 @@
 view: customers {
-  sql_table_name: `sqsh-looker-project.marketing_analytics.customers` ;;
+  sql_table_name: sqsh-developer-pocs.marketing_analytics.customers ;;
   drill_fields: [customer_id]
 
   dimension: customer_id {
@@ -13,7 +13,7 @@ view: customers {
   }
   dimension: first_name {
     type: string
-    sql: ${TABLE}.first_name ;;
+    sql: concat(${TABLE}.first_name || ' ' || ${TABLE}.last_name)  ;;
   }
   dimension_group: join {
     type: time
@@ -22,12 +22,17 @@ view: customers {
     datatype: date
     sql: ${TABLE}.join_date ;;
   }
-  dimension: last_name {
-    type: string
-    sql: ${TABLE}.last_name ;;
-  }
+  # dimension: last_name {
+  #   type: string
+  #   sql: ${TABLE}.last_name ;;
+  # }
   measure: count {
     type: count
-    drill_fields: [customer_id, last_name, first_name, transactions.count, interactions.count]
+    drill_fields: [customer_id, first_name, interactions.count, transactions.count]
   }
+  measure: customer_count{
+    type: number
+    sql: count(${customer_id}) ;;
+  }
+
 }

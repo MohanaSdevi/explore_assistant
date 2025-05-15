@@ -1,5 +1,5 @@
 view: products {
-  sql_table_name: `sqsh-looker-project.marketing_analytics.products` ;;
+  sql_table_name: sqsh-developer-pocs.marketing_analytics.products ;;
   drill_fields: [product_id]
 
   dimension: product_id {
@@ -19,13 +19,24 @@ view: products {
     type: string
     sql: ${TABLE}.platform ;;
   }
-  measure: price {
-    type: sum
-    value_format: "#,##0"
+  dimension: price {
+    type: number
     sql: ${TABLE}.price ;;
   }
   measure: count {
     type: count
     drill_fields: [product_id, name, transactions.count]
+  }
+  measure: product_count{
+    type: number
+    sql: count(${product_id}) ;;
+  }
+  measure: total_cost{
+    type: sum
+    sql: ${price} ;;
+  }
+  measure: average_cost{
+    type: average
+    sql: ${price} ;;
   }
 }

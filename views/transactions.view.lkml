@@ -1,5 +1,5 @@
 view: transactions {
-  sql_table_name: `sqsh-looker-project.marketing_analytics.transactions` ;;
+  sql_table_name: sqsh-developer-pocs.marketing_analytics.transactions ;;
   drill_fields: [transaction_id]
 
   dimension: transaction_id {
@@ -12,20 +12,18 @@ view: transactions {
     # hidden: yes
     sql: ${TABLE}.customer_id ;;
   }
-  measure: price {
-    type: sum
+  dimension: price {
+    type: number
     sql: ${TABLE}.price ;;
-    value_format: "#,##0"
   }
   dimension: product_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.product_id ;;
   }
-  measure: quantity {
-    type: sum
+  dimension: quantity {
+    type: number
     sql: ${TABLE}.quantity ;;
-    value_format: "#,##0"
   }
   dimension: store_id {
     type: number
@@ -41,18 +39,34 @@ view: transactions {
     type: count
     drill_fields: [detail*]
   }
+  measure: total_cost {
+    type: sum
+    sql: ${price} ;;
+  }
+  measure: average_cost {
+    type: average
+    sql: ${price} ;;
+  }
+  measure: total_quantity {
+    type: sum
+    sql: ${quantity} ;;
+  }
+  measure: average_quantity {
+    type: average
+    sql: ${price} ;;
+  }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-  transaction_id,
-  stores.store_id,
-  products.product_id,
-  products.name,
-  customers.last_name,
-  customers.customer_id,
-  customers.first_name
-  ]
+      transaction_id,
+      stores.store_id,
+      products.product_id,
+      products.name,
+      customers.last_name,
+      customers.customer_id,
+      customers.first_name
+    ]
   }
 
 }
